@@ -24,3 +24,8 @@ class Scores with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class DetailedScores with ChangeNotifier {
+  int additionalMidterm = 10;
+  int additionalFinal = 10;
+}

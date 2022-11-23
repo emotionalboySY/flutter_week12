@@ -7,11 +7,23 @@ class EditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Scores'),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => DetailedScores(),
+      builder: (context, child) => Scaffold(
+        appBar: AppBar(
+          title: const Text('Edit Scores'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            EditPanel(),
+            Text('Additional Midterm', style: TextStyle(fontSize: 16),),
+            Text(context.watch<DetailedScores>().additionalMidterm.toString()),
+            Text('Additional Final', style: TextStyle(fontSize: 16),),
+            Text(context.watch<DetailedScores>().additionalFinal.toString()),
+          ],
+        ),
       ),
-      body: const EditPanel(),
     );
   }
 }
@@ -33,7 +45,7 @@ class EditPanel extends StatelessWidget {
                   context.read<Scores>().decreaseMidTerm();
                   },
                 child: Text('-', style: TextStyle(fontSize: 16),)),
-            Text(context.watch<Scores>().midTermExam.toString(), style: TextStyle(fontSize: 16),),
+            Text(context.select((Scores s) => s.midTermExam).toString(), style: TextStyle(fontSize: 16),),
             TextButton(
                 onPressed: () {
                   context.read<Scores>().increaseMidTerm();
@@ -50,7 +62,7 @@ class EditPanel extends StatelessWidget {
                   context.read<Scores>().decreaseFinal();
                 },
                 child: Text('-', style: TextStyle(fontSize: 16),)),
-            Text(context.watch<Scores>().finalExam.toString(), style: TextStyle(fontSize: 16),),
+            Text(context.select((Scores s) => s.finalExam).toString(), style: TextStyle(fontSize: 16),),
             TextButton(
                 onPressed: () {
                   context.read<Scores>().increaseFinal();
