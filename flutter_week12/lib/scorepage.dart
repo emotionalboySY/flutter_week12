@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'editpage.dart';
+
 class ScorePage extends StatelessWidget {
   const ScorePage({Key? key}) : super(key: key);
 
@@ -9,7 +11,18 @@ class ScorePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Scores'),
       ),
-      body: ScorePanel(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ScorePanel(),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => EditPage()));
+          }, child: Text('Edit')),
+        ],
+      ),
     );
   }
 }
@@ -24,7 +37,7 @@ class ScorePanel extends StatelessWidget {
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text('Mid-Term', style: TextStyle(fontSize: 20),),
             SizedBox(
               height: 20,
@@ -34,7 +47,7 @@ class ScorePanel extends StatelessWidget {
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text('Final', style: TextStyle(fontSize: 20),),
             SizedBox(
               height: 20,
