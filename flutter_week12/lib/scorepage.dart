@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'editpage.dart';
+import 'package:provider/provider.dart';
+import 'scores.dart';
 
 class ScorePage extends StatelessWidget {
   const ScorePage({Key? key}) : super(key: key);
@@ -14,13 +15,13 @@ class ScorePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ScorePanel(),
-          SizedBox(
+          const ScorePanel(),
+          const SizedBox(
             height: 20,
           ),
           ElevatedButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => EditPage()));
-          }, child: Text('Edit')),
+          }, child: const Text('Edit')),
         ],
       ),
     );
@@ -37,22 +38,22 @@ class ScorePanel extends StatelessWidget {
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text('Mid-Term', style: TextStyle(fontSize: 20),),
-            SizedBox(
+          children: [
+            const Text('Mid-Term', style: TextStyle(fontSize: 20),),
+            const SizedBox(
               height: 20,
             ),
-            Text('0', style: TextStyle(fontSize: 20),),
+            Text(context.watch<Scores>().midTermExam.toString(), style: TextStyle(fontSize: 20),),
           ],
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text('Final', style: TextStyle(fontSize: 20),),
-            SizedBox(
+          children: [
+            const Text('Final', style: TextStyle(fontSize: 20),),
+            const SizedBox(
               height: 20,
             ),
-            Text('0', style: TextStyle(fontSize: 20),),
+            Text(context.watch<Scores>().finalExam.toString(), style: TextStyle(fontSize: 20),),
           ],
         ),
       ],

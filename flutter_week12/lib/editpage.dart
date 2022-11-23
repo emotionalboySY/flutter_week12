@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'scores.dart';
 
 class EditPage extends StatelessWidget {
   const EditPage({Key? key}) : super(key: key);
@@ -7,9 +9,9 @@ class EditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Scores'),
+        title: const Text('Edit Scores'),
       ),
-      body: EditPanel(),
+      body: const EditPanel(),
     );
   }
 }
@@ -26,18 +28,34 @@ class EditPanel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(child: Text('Mid-Term', style: TextStyle(fontSize: 16),), width: 100,),
-            TextButton(onPressed: () {}, child: Text('-', style: TextStyle(fontSize: 16),)),
-            Text('0', style: TextStyle(fontSize: 16),),
-            TextButton(onPressed: () {}, child: Text('+', style: TextStyle(fontSize: 16),)),
+            TextButton(
+                onPressed: () {
+                  context.read<Scores>().decreaseMidTerm();
+                  },
+                child: Text('-', style: TextStyle(fontSize: 16),)),
+            Text(context.watch<Scores>().midTermExam.toString(), style: TextStyle(fontSize: 16),),
+            TextButton(
+                onPressed: () {
+                  context.read<Scores>().increaseMidTerm();
+                },
+                child: Text('+', style: TextStyle(fontSize: 16),)),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(child: Text('Final', style: TextStyle(fontSize: 16),), width: 100,),
-            TextButton(onPressed: () {}, child: Text('-', style: TextStyle(fontSize: 16),)),
-            Text('0', style: TextStyle(fontSize: 16),),
-            TextButton(onPressed: () {}, child: Text('+', style: TextStyle(fontSize: 16),)),
+            TextButton(
+                onPressed: () {
+                  context.read<Scores>().decreaseFinal();
+                },
+                child: Text('-', style: TextStyle(fontSize: 16),)),
+            Text(context.watch<Scores>().finalExam.toString(), style: TextStyle(fontSize: 16),),
+            TextButton(
+                onPressed: () {
+                  context.read<Scores>().increaseFinal();
+                },
+                child: Text('+', style: TextStyle(fontSize: 16),)),
           ],
         ),
       ],
