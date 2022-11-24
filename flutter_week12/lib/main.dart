@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_week12/scorepage.dart';
-import 'package:flutter_week12/scores.dart';
-import 'editpage.dart';
+import 'package:flutter_week12/addteammemberpage.dart';
+import 'package:flutter_week12/members.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -14,13 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => Scores(),
+      create: (BuildContext context) => Members(),
       builder: (context, child) => MaterialApp(
         title: 'My App',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        home: ScorePage(),
+        home: const AddTeamMemberPage(),
       ),
     );
   }
